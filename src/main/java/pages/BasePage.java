@@ -35,4 +35,20 @@ public abstract class BasePage {
         }
         return false;
     }
+
+    public void clickWait(WebElement element){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions
+                        .elementToBeClickable(element)).click();
+    }
+
+    public boolean isUrlContainsText(String text) {
+        try {
+            return new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.urlContains(text));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
